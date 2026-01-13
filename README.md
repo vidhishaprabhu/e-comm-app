@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ECommApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
@@ -57,3 +58,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# e-comm-app
+>>>>>>> 6d694ec1d08a99a2c9df36664b8ccdb042b71254
