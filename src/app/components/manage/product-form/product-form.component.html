@@ -1,0 +1,87 @@
+<div class="flex flex-col px-40">
+  @if(id){<h1 class="text-center">Update New Products</h1>}@else{<h1 class="text-center">Add New Products</h1>}
+  <form class="shadow sm" [formGroup]="productForm">
+    <div class="flex flex-wrap">
+      <div class="w-full gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" [(ngModel)]="name"/>
+        </mat-form-field>
+      </div>
+      <div class="w-full gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Short Description</mat-label>
+          <input matInput type="text" formControlName="shortDescription" [(ngModel)]="shortDescription"/>
+        </mat-form-field>
+      </div>
+      <div class="w-full gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" formControlName="description" [(ngModel)]="description" />
+        </mat-form-field>
+      </div>
+      <div class="w-full gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Price</mat-label>
+          <input matInput type="text" formControlName="Price" [(ngModel)]="Price"/>
+        </mat-form-field>
+      </div>
+      <div class="w-full gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Discount</mat-label>
+          <input matInput type="text" formControlName="discount" [(ngModel)]="discount"/>
+        </mat-form-field>
+      </div>
+      <div class="w-full gap-4" formArrayName="images">
+        <div class="flex justify-between">
+          <h4>Images</h4>
+          <button mat-raised-button color="primary" class="my-4" (click)="addImage()">
+            Add Images
+          </button>
+          <button mat-raised-button color="primary" class="my-4 mr-4" (click)="removeImage()">
+            Remove Images
+          </button>
+        </div>
+        @for(item of images.controls; track $index){
+        <mat-form-field class="w-full">
+          <mat-label>Images {{ $index + 1 }}</mat-label>
+          <input matInput type="text" [formControlName]="$index" />
+        </mat-form-field>
+        }
+      </div>
+      <div class="w-full">
+        <mat-form-field class="w-full">
+          <mat-label>Category Id</mat-label>
+          <mat-select formControlName="categoryId">
+            
+            @for (item of categories; track $index) {
+            <mat-option [value]="item._id">
+              {{ item.name }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="w-full">
+        <mat-form-field class="w-full">
+          <mat-label>Brand Id</mat-label>
+          <mat-select formControlName="brandId">
+            @for (item of brands; track $index) {
+            <mat-option [value]="item._id">
+              {{ item.name }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="w-full flex gap-4 justify-center my-5">
+        @if(id){
+          <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="update()">Update</button>
+        }
+        @else{
+          <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="add()">Add</button>
+        }
+      </div>
+    </div>
+  </form>
+</div>
