@@ -9,10 +9,10 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  purchasePrice: {
+  Price: {
     type: Number,
   },
-  sellingPrice: {
+  discount: {
     type: Number,
   },
   images: {
@@ -23,8 +23,13 @@ const productSchema = new mongoose.Schema({
     ref: "categories", 
     required: true,
   },
+  brandId: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "brands", 
+    required: true,
+  },
 });
 
 const Product = mongoose.model("product", productSchema);
 
-module.exports = Url;
+module.exports = Product;
