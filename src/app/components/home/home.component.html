@@ -1,1 +1,49 @@
-<p>home works!</p>
+<div class="max-w-7xl mx-auto px-6 py-10">
+  <!-- Section Title -->
+  <h1 class="text-3xl text-gray-800 mb-8">
+    Featured Products
+  </h1>
+
+  <!-- Products Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @for (product of featuredProduct; track $index) {
+      <div
+        class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
+      >
+        <!-- Image -->
+        <div class="h-48 bg-gray-100 flex items-center justify-center">
+          <img
+            [src]="product.images[0]"
+            alt="{{ product.name }}"
+            class="h-full object-contain group-hover:scale-105 transition"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-gray-800 truncate">
+            {{ product.name }}
+          </h3>
+
+          <p class="text-sm text-gray-500 mt-1 line-clamp-2">
+            {{ product.shortDescription }}
+          </p>
+
+          <!-- Price -->
+          <div class="flex items-center gap-2 mt-3">
+            <span class="text-xl font-bold text-gray-900">
+              ₹{{ product.Price }}
+            </span>
+          </div>
+
+          <!-- Button -->
+          <button
+            class="mt-4 w-full bg-black text-white py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

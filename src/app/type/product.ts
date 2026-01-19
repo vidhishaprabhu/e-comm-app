@@ -4,7 +4,9 @@ export interface Product{
   description:String,
   Price:Number,
   discount:Number,
-  image:String[],
+  images:String[],
   categoryId:String,
-  brandId:string
+  brandId:string,
+  isFeatured:boolean,
+  isNewProduct:boolean
 }

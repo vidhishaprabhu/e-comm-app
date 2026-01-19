@@ -22,7 +22,9 @@ export class ProductsService {
       discount:Product.discount,
       images:Product.images,
       categoryId:Product.categoryId,
-      brandId:Product.brandId
+      brandId:Product.brandId,
+      isFeatured:Product.isFeatured,
+      isNewProduct:Product.isNewProduct
     });
   }
   getProductsById(id: string) {

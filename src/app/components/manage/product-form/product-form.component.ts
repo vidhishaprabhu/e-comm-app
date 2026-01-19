@@ -16,6 +16,7 @@ import { Category } from '../../../type/category';
 import { Brand } from '../../../type/brand';
 import { ProductsService } from '../../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @Component({
   selector: 'app-product-form',
   imports: [
@@ -24,7 +25,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss',
@@ -40,6 +42,8 @@ export class ProductFormComponent {
     images: this.formBuilder.array([]),
     categoryId: [null, [Validators.required]],
     brandId: [null, [Validators.required]],
+    isFeatured:[false],
+    isNewProduct:[false]
   });
   categoryService=inject(CategoryService);
   id!:string
@@ -82,6 +86,8 @@ export class ProductFormComponent {
   Price!:string
   discount!:string
   categoryId!:string
+  isFeatured!:boolean
+  isNewProduct!:boolean
 
   add() {
   const value = this.productForm.value;
