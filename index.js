@@ -7,6 +7,7 @@ const brandRoutes=require("./routes/brand")
 const productRoutes=require("./routes/product");
 const cors=require("cors");
 app.use(cors());
+const customerRoutes=require('./routes/customer');
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/ecomm-db")
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/category", categoryRoutes);
 app.use("/brand",brandRoutes);
 app.use("/product",productRoutes);
+app.use("/customer",customerRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Success" });

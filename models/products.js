@@ -28,6 +28,12 @@ const productSchema = new mongoose.Schema({
     ref: "brands", 
     required: true,
   },
+  isFeatured:{
+    type:Boolean,
+  },
+  isNewProduct:{
+    type:Boolean,
+  }
 });
 
 const Product = mongoose.model("product", productSchema);
