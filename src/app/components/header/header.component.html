@@ -7,7 +7,7 @@
     </div>
 
     <div class="search-box">
-      <input type="text" placeholder="Search for products, brands and more" />
+      <input type="text" placeholder="Search for products, brands and more" (keyup.enter)="onSearch($event)"/>
       <button>
         <span><mat-icon>search</mat-icon> </span>
       </button>
