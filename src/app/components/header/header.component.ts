@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Category } from '../../type/category';
 import { CategoryService } from '../../services/category.service';
 import {MatIconModule} from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-header',
-  imports: [MatIconModule],
+  imports: [MatIconModule,RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -25,5 +25,8 @@ export class HeaderComponent {
       this.router.navigateByUrl('products?search='+e.target.value)
 
     }
+  }
+  searchCategory(id:string){
+    this.router.navigateByUrl("products?categoryId="+id);
   }
 }

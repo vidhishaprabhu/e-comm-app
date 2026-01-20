@@ -1,7 +1,7 @@
 <header class="ecom-header">
   <!-- Top Row -->
   <div class="top-bar">
-    <div class="logo">
+    <div class="logo" routerLink="/">
       <!-- <img src="assets/logo.png" alt="logo" /> -->
       <span><span><mat-icon>shopping_cart</mat-icon></span> ShopMart</span>
     </div>
@@ -30,7 +30,7 @@
   <nav class="category-bar">
     <ul class="pt-5">
       @for (category of categories; track $index) {
-        <li>{{ category.name }}</li>
+        <li (click)="searchCategory(category._id)">{{ category.name }}</li>
       }
     </ul>
   </nav>
