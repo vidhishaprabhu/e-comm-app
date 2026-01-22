@@ -8,54 +8,77 @@ import { ProductsComponent } from './components/manage/products/products.compone
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './core/auth-guard';
 
 export const routes: Routes = [
   {
     path:"",
-    component:HomeComponent
+    component:HomeComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/categories",
-    component:CategoriesComponent
+    component:CategoriesComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/categories/add",
-    component:CategoryFormComponent
+    component:CategoryFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/categories/:id",
-    component:CategoryFormComponent
+    component:CategoryFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/brands",
-    component:BrandsComponent
+    component:BrandsComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/brands/add",
-    component:BrandFormComponent
+    component:BrandFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/brands/:id",
-    component:BrandFormComponent
+    component:BrandFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/products",
-    component:ProductsComponent
+    component:ProductsComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/products/add",
-    component:ProductFormComponent
+    component:ProductFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/products/:id",
-    component:ProductFormComponent
+    component:ProductFormComponent,
+    canActivate:[authGuard]
   },
   {
     path:"products",
-    component:ProductListComponent
+    component:ProductListComponent,
+    canActivate:[authGuard]
   },
   {
     path:"product/:id",
-    component:ProductDetailsComponent
+    component:ProductDetailsComponent,
+    canActivate:[authGuard]
+  },
+  {
+    path:"register",
+    component:RegisterComponent,
+  },
+  {
+    path:"login",
+    component:LoginComponent
   }
 ];
