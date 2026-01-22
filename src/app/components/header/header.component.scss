@@ -1,4 +1,4 @@
-$primary: #111827;   // dark slate
+$primary: #111827; // dark slate
 $secondary: #1f2937;
 $accent: #ff9f00;
 $text-light: #e5e7eb;
@@ -155,6 +155,13 @@ $border-dark: #374151;
     .category-bar ul {
       gap: 1.2rem;
       font-size: 0.85rem;
+    }
+    .toolbar {
+      display: flex;
+    }
+
+    .spacer {
+      flex: 1;
     }
   }
 }

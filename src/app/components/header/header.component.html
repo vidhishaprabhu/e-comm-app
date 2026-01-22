@@ -18,36 +18,51 @@
         <span><mat-icon>search</mat-icon> </span>
       </button>
     </div>
-
     <div class="actions">
       <div class="action flex flex-col items-center cursor-pointer">
-        <mat-icon>account_circle</mat-icon>
-        <p class="text-sm mt-1">Welcome, {{ authService.username }}</p>
-        <button
-  mat-raised-button
-  color="warn"
-  (click)="logout()"
->
-  Logout
-</button>
-
+        @if (authService.isLoggedin) {
+          <mat-icon>account_circle</mat-icon>
+          <p class="text-sm mt-1">Welcome, {{ authService.username }}</p>
+        }
+        @if (authService.isLoggedin) {
+          <button mat-raised-button color="warn" (click)="logout()">
+            Logout
+          </button>
+        } @else {
+          <div class="flex">
+            <button
+              mat-raised-button
+              color="warn"
+              class="mr-5"
+              routerLink="/login"
+            >
+              Login
+            </button>
+            <button mat-raised-button color="primary" routerLink="/register">
+              Register
+            </button>
+          </div>
+        }
       </div>
-
-      <div class="action">
-        <span><mat-icon>favorite</mat-icon></span>
-      </div>
-      <div class="action">
-        <span><mat-icon>shopping_cart</mat-icon></span>
-      </div>
+      @if (authService.isLoggedin) {
+        <div class="action">
+          <span><mat-icon>favorite</mat-icon></span>
+        </div>
+        <div class="action">
+          <span><mat-icon>shopping_cart</mat-icon></span>
+        </div>
+      }
     </div>
   </div>
 
   <!-- Category Row -->
-  <nav class="category-bar">
-    <ul class="pt-5">
-      @for (category of categories; track $index) {
-        <li (click)="searchCategory(category._id)">{{ category.name }}</li>
-      }
-    </ul>
-  </nav>
+  @if (authService.isLoggedin) {
+    <nav class="category-bar">
+      <ul class="pt-5">
+        @for (category of categories; track $index) {
+          <li (click)="searchCategory(category._id)">{{ category.name }}</li>
+        }
+      </ul>
+    </nav>
+  }
 </header>

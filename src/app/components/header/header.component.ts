@@ -6,9 +6,10 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CustomerService } from '../../services/customer.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-header',
-  imports: [MatIconModule,RouterLink,MatButtonModule],
+  imports: [MatIconModule,RouterLink,MatButtonModule,MatToolbarModule,RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
