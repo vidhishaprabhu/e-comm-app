@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,14 @@ http=inject(HttpClient)
     })
 
   }
+  get isAdminLoggedIn(){
+    const userData=localStorage.getItem("user");
+    if(userData){
+      return JSON.parse(userData).isAdmin;
+    }
+    return false;
+
+  }
   get isLoggedin(){
     const token=localStorage.getItem("token");
     if(token){
@@ -37,8 +46,20 @@ http=inject(HttpClient)
     }
     return null;
   }
+  get email(){
+    const userData=localStorage.getItem("user");
+    if(userData){
+      return JSON.parse(userData).email
+    }
+    else{
+      return null;
+    }
+  }
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+  }
+  editProfile(userData:any){
+    return this.http.put(environment.apiUrl+'/auth/edit-profile',userData)
   }
 }

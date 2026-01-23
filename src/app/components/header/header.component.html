@@ -20,9 +20,14 @@
     </div>
     <div class="actions">
       <div class="action flex flex-col items-center cursor-pointer">
-        @if (authService.isLoggedin) {
+        @if (authService.isLoggedin && authService.isAdminLoggedIn) {
           <mat-icon>account_circle</mat-icon>
-          <p class="text-sm mt-1">Welcome, {{ authService.username }}</p>
+          <a class="text-sm mt-1" routerLink="/admin">Welcome, {{ authService.username }}</a>
+        }
+        @else{
+          <mat-icon>account_circle</mat-icon>
+          <a class="text-sm mt-1" routerLink="/profile">Welcome, {{ authService.username }}</a>
+
         }
         @if (authService.isLoggedin) {
           <button mat-raised-button color="warn" (click)="logout()">

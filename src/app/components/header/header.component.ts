@@ -23,6 +23,7 @@ export class HeaderComponent {
       this.categories=result.Category;
       console.log(this.categories);
     })
+
   }
   onSearch(e:any){
     console.log(e.target.value);
