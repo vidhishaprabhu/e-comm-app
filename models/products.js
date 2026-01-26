@@ -34,6 +34,8 @@ const productSchema = new mongoose.Schema({
   isNewProduct:{
     type:Boolean,
   }
+},{
+  timestamps:true
 });
 
 const Product = mongoose.model("product", productSchema);
