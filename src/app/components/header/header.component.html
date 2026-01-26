@@ -13,6 +13,7 @@
         type="text"
         placeholder="Search for products, brands and more"
         (keyup.enter)="onSearch($event)"
+        [(ngModel)]="searchTerm"
       />
       <button>
         <span><mat-icon>search</mat-icon> </span>
@@ -67,7 +68,10 @@
         @for (category of categories; track $index) {
           <li (click)="searchCategory(category._id)">{{ category.name }}</li>
         }
+        <li><a routerLink="/products">All</a></li>
       </ul>
+      
     </nav>
   }
+
 </header>

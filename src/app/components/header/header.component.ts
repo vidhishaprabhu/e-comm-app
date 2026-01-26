@@ -7,9 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { CustomerService } from '../../services/customer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-header',
-  imports: [MatIconModule,RouterLink,MatButtonModule,MatToolbarModule,RouterLink],
+  imports: [MatIconModule,RouterLink,MatButtonModule,MatToolbarModule,RouterLink,FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -18,6 +19,7 @@ export class HeaderComponent {
   customerService=inject(CustomerService);
   authService=inject(AuthService);
   router=inject(Router);
+  searchTerm='';
   ngOnInit(){
     this.customerService.getCategories().subscribe((result:any)=>{
       this.categories=result.Category;
@@ -31,7 +33,9 @@ export class HeaderComponent {
       this.router.navigateByUrl('products?search='+e.target.value)
     }
   }
+  
   searchCategory(id:string){
+    this.searchTerm=''
     this.router.navigateByUrl("products?categoryId="+id);
   }
   logout(){

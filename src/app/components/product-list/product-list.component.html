@@ -1,1 +1,92 @@
-<p>product-list works!</p>
+<div class="flex">
+  <div class="w-5/12">
+    
+    <div class="flex justify-between gap-3 mr-[190px]">
+      <h3>Products</h3>
+      <mat-form-field>
+        <mat-label>Order By Price</mat-label>
+        <mat-select [(ngModel)]="order" (selectionChange)="onSortChange($event.value)">
+          <mat-option value="asc">Price Low to High</mat-option>
+          <mat-option value="desc">Price High to Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      @for (product of products; track $index) {
+        <app-product-card class="w-[250px]" [product]="product">
+        </app-product-card>
+      } @empty {
+        <div
+          class="w-full flex flex-col items-center justify-center py-16 text-center"
+        >
+          <mat-icon class="text-gray-400 text-6xl mb-4"> search_off </mat-icon>
+
+          <h5 class="text-lg font-semibold text-gray-600 mb-1">
+            No products found
+          </h5>
+
+          <p class="text-sm text-gray-400">
+            Try searching with a different keyword or category
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+  <div>
+    <h3>Filters</h3>
+    <div class="flex flex-col">
+      <div class="flex">
+        <mat-form-field>
+          <mat-label>Categories</mat-label>
+          <mat-select
+            name="categoryId"
+            [(ngModel)]="categoryId"
+            (valueChange)="getProducts()"
+          >
+            @for (category of categories; track $index) {
+              <mat-option [value]="category._id">{{
+                category.name
+              }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex">
+        <mat-form-field>
+          <mat-label>Brands</mat-label>
+          <mat-select
+            name="brandId"
+            [(ngModel)]="brandId"
+            (valueChange)="getProducts()"
+          >
+            @for (brand of brands; track $index) {
+              <mat-option [value]="brand._id">{{ brand.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex items-center justify-center gap-4 mt-8">
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="page === 1"
+    (click)="pageChange(page - 1)">
+    Previous
+  </button>
+
+  <span class="text-sm font-medium text-gray-600">
+    Page {{ page }} of {{ totalPage }}
+  </span>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="page >= totalPage"
+    (click)="pageChange(page + 1)">
+    Next 
+  </button>
+</div>
+

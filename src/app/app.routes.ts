@@ -14,6 +14,7 @@ import { authGuard } from './core/auth-guard';
 import { AdminDashboardComponent } from './components/manage/admin-dashboard/admin-dashboard.component';
 import { adminGuard } from './core/admin-guard';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { AdminProfilePageComponent } from './components/manage/admin-profile-page/admin-profile-page.component';
 
 export const routes: Routes = [
   {
@@ -93,5 +94,9 @@ export const routes: Routes = [
   {
     path:"profile",
     component:CustomerProfileComponent
+  },
+  {
+    path:"admin-profile",
+    component:AdminProfilePageComponent
   }
 ];
