@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="w-5/12">
     
-    <div class="flex justify-between gap-3 mr-[190px]">
+    <div class="flex justify-between gap-3 mr-[230px]">
       <h3>Products</h3>
       <mat-form-field>
         <mat-label>Order By Price</mat-label>
@@ -11,10 +11,17 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex gap-3 w-10/15">
       @for (product of products; track $index) {
-        <app-product-card class="w-[250px]" [product]="product">
-        </app-product-card>
+        <a
+      class="cursor-pointer"
+      [routerLink]="['/product', product._id]"
+    >
+      <app-product-card
+        class="w-[250px]"
+        [product]="product">
+      </app-product-card>
+    </a>
       } @empty {
         <div
           class="w-full flex flex-col items-center justify-center py-16 text-center"

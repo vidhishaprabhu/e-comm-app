@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { Product } from '../../type/product';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { Category } from '../../type/category';
 import { Brand } from '../../type/brand';
 import { BrandService } from '../../services/brand.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-product-list',
@@ -23,13 +23,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
 export class ProductListComponent {
   customerService = inject(CustomerService);
+  router=inject(Router);
   page: number = 1;
   limit?: number = 2;
   searchTerm: string = '';
@@ -43,7 +45,6 @@ export class ProductListComponent {
   route = inject(ActivatedRoute);
   categories: Category[] = [];
   brands: Brand[] = [];
-
   ngOnInit() {
     this.customerService.getCategories().subscribe((result: any) => {
       this.categories = result.Category;
@@ -90,4 +91,6 @@ export class ProductListComponent {
     // this.isNext=true
     this.getProducts();
   }
+  
+
 }

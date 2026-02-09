@@ -8,6 +8,7 @@ import { CustomerService } from '../../services/customer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
+import { WishlistService } from '../../services/wishlist.service';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule,RouterLink,MatButtonModule,MatToolbarModule,RouterLink,FormsModule],
@@ -19,12 +20,15 @@ export class HeaderComponent {
   customerService=inject(CustomerService);
   authService=inject(AuthService);
   router=inject(Router);
+  wishlistService=inject(WishlistService)
   searchTerm='';
   ngOnInit(){
     this.customerService.getCategories().subscribe((result:any)=>{
       this.categories=result.Category;
       console.log(this.categories);
     })
+     
+    this.wishlistService.init();
 
   }
   onSearch(e:any){
@@ -40,6 +44,7 @@ export class HeaderComponent {
   }
   logout(){
     this.authService.logout();
+    // this.wishlistService.wishlist = [];
     alert("User logged out successfully");
     this.router.navigateByUrl("/login")
   }

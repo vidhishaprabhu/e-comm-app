@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
     password:['',[Validators.minLength(5)]]
   })
   authService=inject(AuthService);
+  wishlistService=inject(WishlistService);
   router=inject(Router)
   login(){
     const value=this.loginform.value;
@@ -25,6 +27,7 @@ export class LoginComponent {
       alert("Login done successfully");
       localStorage.setItem('token',result.token);
       localStorage.setItem('user',JSON.stringify(result.user))
+      this.wishlistService.init();
       this.router.navigateByUrl("/");
     })
     

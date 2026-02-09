@@ -63,4 +63,9 @@ export class CustomerService {
       params,
     });
   }
+  getProductById(id:string){
+    return this.http.get(environment.apiUrl+'/customer/product/'+id);
+  }
+
+  
 }

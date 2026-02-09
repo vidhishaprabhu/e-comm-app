@@ -5,6 +5,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent {
   customerService=inject(CustomerService);
+  wishlistService=inject(WishlistService);
   newProduct:Product[]=[];
   featuredProduct:Product[]=[];
   bannerImages:Product[]=[];
@@ -49,6 +51,7 @@ export class HomeComponent {
 
     this.bannerImages.push(...result.filter(p => p.images && p.images.length > 0));
   });
+  this.wishlistService.init();
 }
 
 }

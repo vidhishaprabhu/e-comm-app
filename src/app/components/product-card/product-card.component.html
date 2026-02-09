@@ -16,14 +16,35 @@
   </p>
 
   <div class="flex items-center gap-2 mt-3">
-    <span class="text-xl font-bold text-gray-900"> ₹{{ product.Price }} </span>
+    <span class="text-xl font-bold text-gray-900">
+      <s>₹{{ product.Price }}</s>
+    </span>
+    <p class="text-xs">({{ product.discount }} % OFF)</p>
+    <p class="text-2xl font-bold mt-5">₹{{ sellingPrice }}</p>
   </div>
 
-  <button
-    class="mt-4 w-full bg-black text-white py-2 rounded-xl text-sm font-medium hover:bg-gray-800 transition"
-    mat-raised-button
-    color="primary"
-  >
-    Add to Cart
-  </button>
+  <div class="action-buttons d-flex justify-content-end gap-2">
+    <button
+      mat-fab
+      color="primary"
+      type="button"
+      matTooltip="Add to Wishlist"
+      (click)="addToWishlist(product)"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+      mat-fab
+      color="primary"
+      type="button"
+      matTooltip="Add to Wishlist"
+      (click)="deleteWishlist(product)"
+    >
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+
+    <button mat-fab color="primary" matTooltip="Add to Cart">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </div>
 </div>
