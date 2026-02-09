@@ -25,19 +25,25 @@ export class ProductDetailsComponent {
   customerService = inject(CustomerService);
   wishlistService=inject(WishlistService);
   routes = inject(ActivatedRoute);
+  wishlist:Product[]=[];
   product!: Product;
   similarProduct: Product[] = [];
   ngOnInit() {
     this.routes.params.subscribe((result:any)=>{
       this.getProduct(result.id);
     })
-    
+    this.getAllProduct();
   }
   getProduct(id: string) {
     this.customerService.getProductById(id).subscribe((result: any) => {
       this.product = result;
       this.getSimilarProducts(this.product.categoryId);
       console.log(this.product);
+    });
+  }
+  getAllProduct(){
+    this.wishlistService.getWishList().subscribe((res:any)=>{
+      this.wishlist=res;
     });
   }
   getSimilarProducts(categoryId: string) {
@@ -48,15 +54,18 @@ export class ProductDetailsComponent {
         this.similarProduct = result.product;
       });
   }
+  
   addToWishlist(product: Product) {
     this.wishlistService.addToWishList(product._id).subscribe((res: any) => {
       console.log('First Item', res);
       const wishlistItem = res;
+      this.wishlistService.init()
 
       this.wishlistService.wishlist = [
         ...(this.wishlistService.wishlist || []),
         wishlistItem,
       ];
+      
 
       alert('Wishlist added successfully');
     });
@@ -73,6 +82,7 @@ export class ProductDetailsComponent {
         this.wishlistService.wishlist = this.wishlistService.wishlist.filter(
           (item: any) => item.productId !== product._id,
         );
+        this.wishlistService.init()
         alert('Wishlist deleted successfully');
       });
   }

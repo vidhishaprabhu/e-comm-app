@@ -11,8 +11,9 @@ export class WishlistService {
   http = inject(HttpClient);
   wishlist: Product[] = [];
   init() {
-    this.getWishList().subscribe((result: any) => {
-      this.wishlist = result.data;
+   return this.getWishList().subscribe((result: any) => {
+      return this.wishlist = result.wishlist.map((item: any) => item.productId);
+
     });
   }
 

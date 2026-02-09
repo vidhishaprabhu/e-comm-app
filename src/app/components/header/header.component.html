@@ -23,12 +23,14 @@
       <div class="action flex flex-col items-center cursor-pointer">
         @if (authService.isLoggedin && authService.isAdminLoggedIn) {
           <mat-icon>account_circle</mat-icon>
-          <a class="text-sm mt-1" routerLink="/admin">Welcome, {{ authService.username }}</a>
-        }
-        @else{
+          <a class="text-sm mt-1" routerLink="/admin"
+            >Welcome, {{ authService.username }}</a
+          >
+        } @else {
           <mat-icon>account_circle</mat-icon>
-          <a class="text-sm mt-1" routerLink="/profile">Welcome, {{ authService.username }}</a>
-
+          <a class="text-sm mt-1" routerLink="/profile"
+            >Welcome, {{ authService.username }}</a
+          >
         }
         @if (authService.isLoggedin) {
           <button mat-raised-button color="warn" (click)="logout()">
@@ -52,10 +54,20 @@
       </div>
       @if (authService.isLoggedin) {
         <div class="action">
-          <span><mat-icon>favorite</mat-icon></span>
+          <button
+            mat-icon-button
+            color="warn"
+            routerLink="/wishlists"
+            matTooltip="Go to Wishlist"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
         </div>
+
         <div class="action">
-          <span><mat-icon>shopping_cart</mat-icon></span>
+          <span routerLink="/wishlists"
+            ><mat-icon>shopping_cart</mat-icon></span
+          >
         </div>
       }
     </div>
@@ -70,8 +82,6 @@
         }
         <li><a routerLink="/products">All</a></li>
       </ul>
-      
     </nav>
   }
-
 </header>

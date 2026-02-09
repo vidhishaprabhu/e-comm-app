@@ -44,28 +44,31 @@
         </p>
       </div>
       <div class="wishlist-actions">
-        <button
-          mat-fab
-          color="warn"
-          type="button"
-          matTooltip="Add to Wishlist"
-          (click)="addToWishlist(product)"
-        >
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <span class="action-text">Add to Wishlist</span>
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    matTooltip="Add to Wishlist"
+    (click)="addToWishlist(product)"
+    class="wishlist-btn add-btn"
+  >
+    <mat-icon>favorite</mat-icon>
+    <span>Add to Wishlist</span>
+  </button>
 
-        <button
-          mat-fab
-          color="accent"
-          type="button"
-          matTooltip="Remove from Wishlist"
-          (click)="deleteWishlist(product)"
-        >
-          <mat-icon>remove_circle_outline</mat-icon>
-        </button>
-        <span class="action-text">Remove from Wishlist</span>
-      </div>
+  <button
+    mat-raised-button
+    color="accent"
+    type="button"
+    matTooltip="Remove from Wishlist"
+    (click)="deleteWishlist(product)"
+    class="wishlist-btn remove-btn"
+  >
+    <mat-icon>remove_circle_outline</mat-icon>
+    <span>Remove from Wishlist</span>
+  </button>
+</div>
+
     </div>
   </div>
 </div>

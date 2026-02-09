@@ -1,0 +1,21 @@
+<h1 class="text-center mt-5 text-bold-400">Wishlist</h1>
+
+@if (wishlistService.wishlist.length === 0) {
+  <h2 class="text-center">No item in wishlist</h2>
+  <div class="flex justify-center mt-6">
+    <button mat-raised-button color="warn" routerLink="/">
+      <mat-icon>add</mat-icon>
+Create Wishlist
+    </button>
+  </div>
+} @else {
+  <div class="flex justify-center flex-wrap gap-6">
+    <div
+      *ngFor="let product of wishlistService.wishlist"
+      class="w-[260px] bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group cursor-pointer"
+    >
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+}
+

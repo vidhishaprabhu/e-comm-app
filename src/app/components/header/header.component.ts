@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { WishlistService } from '../../services/wishlist.service';
+import { Product } from '../../type/product';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule,RouterLink,MatButtonModule,MatToolbarModule,RouterLink,FormsModule],
@@ -21,6 +22,7 @@ export class HeaderComponent {
   authService=inject(AuthService);
   router=inject(Router);
   wishlistService=inject(WishlistService)
+  wishlist:Product[]=[]
   searchTerm='';
   ngOnInit(){
     this.customerService.getCategories().subscribe((result:any)=>{
@@ -37,6 +39,7 @@ export class HeaderComponent {
       this.router.navigateByUrl('products?search='+e.target.value)
     }
   }
+  
   
   searchCategory(id:string){
     this.searchTerm=''
