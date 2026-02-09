@@ -8,7 +8,7 @@ async function createProduct(req, res) {
     .json({ message: "Product created successfully", product });
 }
 async function getProduct(req, res) {
-  const product = await Product.find();
+  const product = await Product.find({});
   return res.status(200).json(product);
 }
 async function updateProduct(req, res) {

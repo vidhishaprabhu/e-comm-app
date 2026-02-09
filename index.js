@@ -6,6 +6,7 @@ const categoryRoutes = require("./routes/category");
 const brandRoutes=require("./routes/brand")
 const productRoutes=require("./routes/product");
 const authRoutes=require("./routes/auth");
+const wishRoutes=require("./routes/wishlist")
 const cors=require("cors");
 app.use(cors());
 const customerRoutes=require('./routes/customer');
@@ -23,6 +24,7 @@ app.use("/category",verifyToken,isAdmin,categoryRoutes);
 app.use("/brand",verifyToken,isAdmin,brandRoutes);
 app.use("/product",verifyToken,isAdmin,productRoutes);
 app.use("/customer",verifyToken,customerRoutes);
+app.use("/wishlist",verifyToken,wishRoutes);
 app.use("/auth",authRoutes);
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Success" });

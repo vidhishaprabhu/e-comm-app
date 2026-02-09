@@ -37,6 +37,7 @@ async function loginUser(req, res) {
     if (isMatch) {
       const token = jwt.sign(
         {
+          id:user.id,
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
