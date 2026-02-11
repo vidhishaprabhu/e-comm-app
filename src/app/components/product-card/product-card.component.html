@@ -43,8 +43,15 @@
       <mat-icon>remove_circle_outline</mat-icon>
     </button>
 
-    <button mat-fab color="primary" matTooltip="Add to Cart">
-      <mat-icon>add_shopping_cart</mat-icon>
+    <button mat-fab color="primary" matTooltip="Add to Cart" (click)="addToCart(product)">
+      @if(isProductInCart(product._id!)){
+        <mat-icon>remove_shopping_cart</mat-icon>
+
+      }
+      @else{
+        <mat-icon>add_shopping_cart</mat-icon>
+      }
+      <!-- <mat-icon>add_shopping_cart</mat-icon> -->
     </button>
   </div>
 </div>

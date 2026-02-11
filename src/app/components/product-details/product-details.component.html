@@ -32,10 +32,18 @@
       <span>Price After Discount</span>
       <span> ({{ product.discount }} % OFF)</span>
       <p class="text-3xl font-bold mt-5">₹{{ sellingPrice }}</p>
-
-      <button mat-raised-button color="primary" class="mt-6">
+      @if(!isProductInCart(product._id)){
+        <button mat-raised-button color="primary" class="mt-6" (click)="addToCart(product)">
         <mat-icon>shopping_cart</mat-icon> Add to Cart
       </button>
+      }
+      @else{
+        <button mat-raised-button color="primary" class="mt-6" (click)="addToCart(product)">
+        <mat-icon>shopping_cart</mat-icon> Remove Cart
+      </button>
+
+      }
+      
 
       <div class="mt-8">
         <h2 class="text-xl font-semibold mb-3">Product Details</h2>

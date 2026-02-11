@@ -3,6 +3,7 @@ import { Product } from '../../type/product';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { WishlistService } from '../../services/wishlist.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -14,6 +15,7 @@ export class ProductCardComponent {
   @Input() product!: Product;
   wishlist: Product[] = [];
   wishlistService = inject(WishlistService);
+  cartService = inject(CartService);
   get sellingPrice() {
     return (
       this.product.Price - (this.product.Price * this.product.discount) / 100
@@ -66,4 +68,23 @@ export class ProductCardComponent {
   //     (item: any) => item.productId === product._id,
   //   );
   // }
+  addToCart(product: Product) {
+    console.log('Added Productsss', product);
+    if (!this.isProductInCart(product._id)) {
+      this.cartService.addToCart(product._id!, 1).subscribe(() => {
+        this.cartService.init();
+      });
+    } else {
+      this.cartService.removeFromCart(product._id!).subscribe(() => {
+        this.cartService.init();
+      });
+    }
+  }
+  isProductInCart(productId: string): boolean {
+    if (!this.cartService.item.length) return false;
+
+    const cart = this.cartService.item[0];
+
+    return cart.productId.includes(productId);
+  }
 }

@@ -7,6 +7,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { WishlistService } from '../../services/wishlist.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -24,6 +25,7 @@ import { WishlistService } from '../../services/wishlist.service';
 export class ProductDetailsComponent {
   customerService = inject(CustomerService);
   wishlistService=inject(WishlistService);
+  cartService=inject(CartService);
   routes = inject(ActivatedRoute);
   wishlist:Product[]=[];
   product!: Product;
@@ -91,5 +93,24 @@ export class ProductDetailsComponent {
     return (
       this.product.Price - (this.product.Price * this.product.discount) / 100
     );
+  }
+  addToCart(product: Product) {
+    console.log('Added Productsss', product);
+    if (!this.isProductInCart(product._id)) {
+      this.cartService.addToCart(product._id!, 1).subscribe(() => {
+        this.cartService.init();
+      });
+    } else {
+      this.cartService.removeFromCart(product._id!).subscribe(() => {
+        this.cartService.init();
+      });
+    }
+  }
+  isProductInCart(productId: string): boolean {
+    if (!this.cartService.item.length) return false;
+
+    const cart = this.cartService.item[0];
+
+    return cart.productId.includes(productId);
   }
 }

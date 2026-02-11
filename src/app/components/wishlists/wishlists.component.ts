@@ -25,11 +25,11 @@ export class WishlistsComponent {
   wishlist: Product[] = [];
   ngOnInit() {
     this.wishlistService.init();
-    this.loadWishlist();
+    // this.loadWishlist();
   }
-  loadWishlist() {
-    this.wishlistService.getWishList().subscribe((res: any) => {
-      this.wishlist = res.wishlist.map((w: any) => w.productId);
-    });
-  }
+  // loadWishlist() {
+  //   this.wishlistService.getWishList().subscribe((res: any) => {
+  //     this.wishlist = res.wishlist.map((w: any) => w.productId);
+  //   });
+  // }
 }
