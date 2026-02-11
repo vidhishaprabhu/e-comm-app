@@ -25,7 +25,7 @@ async function getWishListById(req,res){
   return res.status(200).json({wishlist});
 }
 async function getWishList(req,res) {
-  const wishlist=await WishList.find({ userId: req.user.id })
+  const wishlist=await WishList.find({ userId: req.user.id }).populate('productId');
   return res.status(200).json({wishlist});  
 }
 async function deleteWishList(req, res) {
