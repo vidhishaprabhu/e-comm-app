@@ -8,6 +8,9 @@ const {getBrand}=require('../controllers/brand')
 const {getWishListById}=require('../controllers/wishlist')
 const {deleteWishList}=require('../controllers/wishlist')
 const {getWishList}=require('../controllers/wishlist');
+const {addToCart,removeFromCart,getAll}=require('../controllers/cart');
+const { route } = require('./wishlist');
+
 router.get('/new-product',getNewProduct);
 router.get('/featured-product',getFeaturedProduct)
 router.get('/categories',getCategory);
@@ -17,4 +20,7 @@ router.get('/product/:id',getProductById);
 router.get('/wishlist/:id',getWishListById);
 router.get('/wishlist',getWishList);
 router.delete("/wishlist/:id",deleteWishList);
+router.post("/cart",addToCart);
+router.delete("/cart/:productId",removeFromCart);
+router.get("/cart",getAll);
 module.exports=router;
