@@ -1,1 +1,118 @@
-<p>shoppingcart works!</p>
+<header class="bg-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800">My Cart</h1>
+    <button mat-raised-button color="primary" routerLink="/">
+      Continue Shopping
+    </button>
+  </div>
+</header>
+
+<!-- Main Container -->
+<div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <!-- ================= CART ITEMS ================= -->
+  <div class="lg:col-span-2 space-y-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Shopping Cart</h1>
+
+    <!-- Empty Cart -->
+
+    <!-- Cart Items -->
+    <!-- Cart Items -->
+    @if (cartItems.length > 0) {
+      @for (item of cartItems; track $index) {
+        <div
+          class="bg-white p-6 rounded-2xl shadow-md flex items-center gap-4 mb-4"
+        >
+          <img
+            [src]="item.productId.images[0]"
+            class="w-24 h-24 rounded-xl object-cover"
+          />
+
+          <div>
+            <h2>{{ item.productId.name }}</h2>
+            <p><s></s>₹{{ item.productId.Price }}</p>
+            <p>{{ item.productId.discount }}%</p>
+            <p>
+              After Discount:
+              {{
+                item.productId.Price -
+                  (item.productId.Price * item.productId.discount) / 100
+              }}
+            </p>
+            <p>
+              Total: ₹{{
+                roundPrice(
+                  (item.productId.Price -
+                    (item.productId.Price * item.productId.discount) / 100) *
+                    item.quantity
+                )
+              }}
+            </p>
+
+            <p>Quantity: {{ item.quantity }}</p>
+            <div class="cart-buttons">
+              <!-- Delete Button -->
+              <button
+                (click)="removeFromCart(item.productId._id)"
+                mat-raised-button
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon> Delete
+              </button>
+
+              <!-- Quantity Controls -->
+              <div class="quantity-controls mt-5">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="increaseItem(item.productId._id!, -1)"
+                >
+                  -
+                </button>
+                <span class="quantity ml-5 mr-5">{{ item.quantity }}</span>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="increaseItem(item.productId._id!, 1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    } @else {
+      <span>Data Not Found</span>
+    }
+  </div>
+
+  <!-- ================= ORDER SUMMARY ================= -->
+  <div class="bg-white p-6 rounded-2xl shadow-md h-fit">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Summary</h2>
+
+    <div class="space-y-3 text-gray-600">
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span></span>
+      </div>
+
+      <div class="flex justify-between">
+        <span>Shipping</span>
+        <span>₹ 0</span>
+      </div>
+
+      <hr class="my-3" />
+
+      <div class="flex justify-between text-lg font-semibold text-gray-800">
+        <span>Total</span>
+        <span>₹{{ roundPrice(getCartTotal()) }}</span>
+      </div>
+    </div>
+
+    <button
+      class="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-green-700 transition font-semibold"
+    >
+      Proceed to Checkout
+    </button>
+  </div>
+</div>

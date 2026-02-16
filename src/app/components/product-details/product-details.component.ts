@@ -95,22 +95,27 @@ export class ProductDetailsComponent {
     );
   }
   addToCart(product: Product) {
-    console.log('Added Productsss', product);
-    if (!this.isProductInCart(product._id)) {
-      this.cartService.addToCart(product._id!, 1).subscribe(() => {
-        this.cartService.init();
-      });
-    } else {
-      this.cartService.removeFromCart(product._id!).subscribe(() => {
-        this.cartService.init();
-      });
-    }
-  }
-  isProductInCart(productId: string): boolean {
-    if (!this.cartService.item.length) return false;
+    
+      this.cartService.addToCart(product._id, 1).subscribe(() => {
+        this.cartService.item.push({
+          productId: product,
+          quantity: 1,
+        });
 
-    const cart = this.cartService.item[0];
-
-    return cart.productId.includes(productId);
+        this.cartService.item = [...this.cartService.item];
+        alert('Product added successfully')
+      });
+   
   }
+
+  
+
+  // isProductInCart(productId: string): boolean {
+  //   return (
+  //     this.cartService.item?.some(
+  //       (item) => item?.productId?._id === productId,
+  //     ) ?? false
+  //   );
+  // }
+  
 }

@@ -32,18 +32,15 @@
       <span>Price After Discount</span>
       <span> ({{ product.discount }} % OFF)</span>
       <p class="text-3xl font-bold mt-5">₹{{ sellingPrice }}</p>
-      @if(!isProductInCart(product._id)){
-        <button mat-raised-button color="primary" class="mt-6" (click)="addToCart(product)">
-        <mat-icon>shopping_cart</mat-icon> Add to Cart
-      </button>
-      }
-      @else{
-        <button mat-raised-button color="primary" class="mt-6" (click)="addToCart(product)">
-        <mat-icon>shopping_cart</mat-icon> Remove Cart
-      </button>
-
-      }
       
+        <button
+          mat-raised-button
+          color="primary"
+          class="mt-6"
+          (click)="addToCart(product)"
+        >
+          <mat-icon>shopping_cart</mat-icon> Add to Cart
+        </button>
 
       <div class="mt-8">
         <h2 class="text-xl font-semibold mb-3">Product Details</h2>
@@ -52,31 +49,30 @@
         </p>
       </div>
       <div class="wishlist-actions">
-  <button
-    mat-raised-button
-    color="warn"
-    type="button"
-    matTooltip="Add to Wishlist"
-    (click)="addToWishlist(product)"
-    class="wishlist-btn add-btn"
-  >
-    <mat-icon>favorite</mat-icon>
-    <span>Add to Wishlist</span>
-  </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          matTooltip="Add to Wishlist"
+          (click)="addToWishlist(product)"
+          class="wishlist-btn add-btn"
+        >
+          <mat-icon>favorite</mat-icon>
+          <span>Add to Wishlist</span>
+        </button>
 
-  <button
-    mat-raised-button
-    color="accent"
-    type="button"
-    matTooltip="Remove from Wishlist"
-    (click)="deleteWishlist(product)"
-    class="wishlist-btn remove-btn"
-  >
-    <mat-icon>remove_circle_outline</mat-icon>
-    <span>Remove from Wishlist</span>
-  </button>
-</div>
-
+        <button
+          mat-raised-button
+          color="accent"
+          type="button"
+          matTooltip="Remove from Wishlist"
+          (click)="deleteWishlist(product)"
+          class="wishlist-btn remove-btn"
+        >
+          <mat-icon>remove_circle_outline</mat-icon>
+          <span>Remove from Wishlist</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ export class CartService {
   }
   init(){
     this.getProduct().subscribe(result=>{
-      this.item=result
+      this.item = [...result];
       console.log("FULL CART RESPONSE:", result);
     })
 
